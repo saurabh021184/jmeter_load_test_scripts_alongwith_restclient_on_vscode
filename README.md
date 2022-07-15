@@ -1,2 +1,126 @@
 # jmeter_load_test_scripts_alongwith_restclient_on_vscode
 Project to start with jmeter setup and load test scripts + working with rest client extension to test APIs on VScode
+### Alternative setup with native java
+
+1. on MAC
+
+   1. java is a prerequisite
+   1. set JAVA_HOME
+
+      ```sh
+      # @~/gitlab/geo/nbserver-web/ssb/services/ssb-test
+      $ export JAVA_HOME=/usr/local/opt/openjdk@8
+      $ java -version
+        # java version "1.8.0_311"
+        # Java(TM) SE Runtime Environment (build 1.8.0_311-b11)
+        # Java HotSpot(TM) 64-Bit Server VM (build 25.311-b11, mixed mode)
+      ```
+
+   1. download jmeter (not via homebrew; just download the tar and extract it)
+      ```sh
+      $ ~/Downloads/apache-jmeter-5.4.1/bin/jmeter --version
+      # 5.4.1
+      ```
+
+1. on CentOS
+
+   1. install java
+
+      ```sh
+      $ sudo yum install java-1.8.0-openjdk
+      $ java -version
+          # openjdk version "1.8.0_302"
+          # OpenJDK Runtime Environment (build 1.8.0_302-b08)
+          # OpenJDK 64-Bit Server VM (build 25.302-b08, mixed mode)
+      $ export JAVA_HOME="/usr/bin/java"
+      ```
+
+   1. download jmeter & extract it
+      ```sh
+      $ wget http://apache.stu.edu.tw//jmeter/binaries/apache-jmeter-5.4.1.tgz
+      # extract the downloaded tar file
+      $ tar -xf apache-jmeter-5.4.1.tgz
+      ```
+
+1. on Ubuntu
+
+   1. install java
+
+      ```sh
+      $ sudo sudo apt update
+      $ sudo apt install default-jre
+      $ java -version
+        # openjdk 11.0.15 2022-04-19
+        # OpenJDK Runtime Environment (build 11.0.15+10-Ubuntu-0ubuntu0.20.04.1)
+        # OpenJDK 64-Bit Server VM (build 11.0.15+10-Ubuntu-0ubuntu0.20.04.1, mixed mode, sharing)
+      $ sudo update-alternatives --config java
+        # There is only one alternative in link group java (providing /usr/bin/java): /usr/lib/jvm/java-11-openjdk-amd64/bin/java Nothing to configure.
+      $ sudo nano /etc/environment
+        # At the end of this file, add the following line, making sure to replace the highlighted path with your own copied path, but do not include the bin/ portion of the path
+        JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+      $ cat /etc/environment
+        PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+        JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+      $ source /etc/environment
+      $ echo $JAVA_HOME
+      ```
+
+   1. download jmeter & extract it
+      ```sh
+      $ wget https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.5.tgz
+      # extract the downloaded tar file
+      $ tar -xf apache-jmeter-5.5.tgz
+      ```
+
+1. Add JMeter Plugins
+
+   - Concurrency Thread Group
+     1. download - https://jmeter-plugins.org/wiki/ConcurrencyThreadGroup/
+     ```sh
+     $ wget https://jmeter-plugins.org/files/packages/jpgc-casutg-2.10.zip
+     ```
+     1. Unzip the folder
+        1. Copy the file jmeter-plugins-cmn-jmeter-<version>.jar to lib folder of Apache JMeter
+        1. Copy the files jmeter-plugins-casutg-<version>.jar and jmeter-plugins-manager-<version>.jar to ext folder of Apache JMeter
+
+1. Launch the JMeter in GUI mode - `$ JMETER_BIN_PATH/jmeter`
+   e.g. `$ ~/jmeter/apache-jmeter-5.5/bin/jmeter`
+   If you get the error 'No X11 DISPLAY variable was set, but this program performed an operation which requires it.'
+
+   1. Install VcXsrv on you laptop
+      https://sourceforge.net/projects/vcxsrv/
+
+      Do not launch it immediately just after installation.
+
+   1. go to the Menu and using XLaunch -> Launch it
+      (a) select Multiple Windows
+      (b) select 'Start No Client' Option
+      (c) do select all 3 options 'Clipboard' 'Disable access control' and 'Native opengl' options
+
+   1. go to ubuntu -> check 'nameserver' IP in the file 'cat /etc/resolv.conf'
+
+   1. Run the command
+
+      ```sh
+          $ export DISPLAY=<IP found in above step>:0.0
+              e.g. export DISPLAY=172.26.32.1:0.0
+      ```
+
+   1. Verify by checking if 'xhost' is working
+
+      ```sh
+        $ xhost +
+        # access control disabled, clients can connect from any host
+      ```
+
+      ```sh
+        $ sudo apt-get update
+        $ sudo apt-get install x11-apps
+        $ xcalc  -> calculator app will run
+        $ xeyes  -> eyes app will run
+      ```
+
+   1. once the verification step done run the jmeter UI
+
+   `$ JMETER_BIN_PATH/jmeter`
+   e.g. `$ ~/jmeter/apache-jmeter-5.5/bin/jmeter`
