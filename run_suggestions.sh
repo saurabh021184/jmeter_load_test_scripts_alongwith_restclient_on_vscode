@@ -13,9 +13,9 @@ SAMPLES_PER_MIN=10
 ############# local ##################################################
 # PROTOCOL=http
 # BASE_URL=localhost
-# PORT=50008
-# ROUTE_PATH=/geocode
-# API_KEY=dev_api_key
+# PORT=3000
+# ROUTE_PATH=/suggestions
+# API_KEY=api_key
 ############# automation testing server ##################################################
 PROTOCOL=http
 BASE_URL=ec2-18-224-39-239.us-east-2.compute.amazonaws.com
