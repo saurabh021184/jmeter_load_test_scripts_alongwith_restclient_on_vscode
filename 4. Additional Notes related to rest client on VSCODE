@@ -1,0 +1,2 @@
+1. Just install an extension 'rest client' on VSCode. (do put a 'space' between rest and client while searching for the extension)
+2. check out the sample test.http file...which is used to EXECUTE the API urls (GET/POST etc.) directly in the VSCODE instead spinning up a FAST API client
