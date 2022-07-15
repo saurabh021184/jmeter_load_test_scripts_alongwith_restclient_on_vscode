@@ -18,7 +18,7 @@ SAMPLES_PER_MIN=10
 # API_KEY=api_key
 ############# automation testing server ##################################################
 PROTOCOL=http
-BASE_URL=ec2-18-224-39-239.us-east-2.compute.amazonaws.com
+BASE_URL=ec2-1-1-1-1.us-east-2.compute.amazonaws.com
 PORT=3000
 ROUTE_PATH=suggestions
 API_KEY=dummy
