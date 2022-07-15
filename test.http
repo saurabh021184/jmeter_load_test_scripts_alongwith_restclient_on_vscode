@@ -1,0 +1,29 @@
+#Variables
+@contentType = application/json
+@HOST_LOCAL=http://localhost:3000
+@HOST_TEST_AUTOMATION=http://ec2-1-1-1-1.us-east-2.compute.amazonaws.com:3000
+
+@APIKEY_LOCAL=dummy_local
+@APIKEY_TEST_AUTOMATION=dummy
+@APIKEY={{APIKEY_TEST_AUTOMATION}}
+# you can either place APIKEY_TEST_AUTOMATION or APIKEY_LOCAL or any other APIKEY you have
+
+@suggestion={{HOST_LOCAL}}/suggestions
+@suggestion={{HOST_TEST_AUTOMATION}}/suggestions
+
+#####!!!!!!!!!!!!!!!!!!! Suggestion !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!#####
+#####
+
+
+GET {{suggestion}}
+?api_key={{APIKEY}}
+&search_center=42.369909,-71.07280
+&named_road=True
+
+
+
+#### Suggestion Request 2 ####
+GET {{suggestion}}   
+?api_key={{APIKEY}}
+&search_center=42.369909,-71.07280
+&named_road=False
